@@ -23,10 +23,5 @@ export class ProductsComponent implements OnInit{
         this.products = response.products;
       });
   }
-
-
-  addToCart(product: any) {
-    console.log('Producto agregado al carrito:', product);
-  }
 }
 

@@ -1,20 +1,23 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../models/product.model';
-import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { BuyProductButtonComponent } from '../components/buyproductbutton.component';
 
 @Component({
   selector: 'ios-product-card',
-  imports: [ CommonModule ],
+  imports: [ CommonModule, BuyProductButtonComponent ],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'
 })
 export class ProductCardComponent {
 
-  @Input() product?: Product;
+  @Input() product!: Product;
 
-  addToCart(product: Product) {
-    console.log('Add to cart', product);
+  constructor() {}
+
+  buyProductCallback(){
+    alert(`Product bought ${this.product?.id}`);
   }
+
 
 }

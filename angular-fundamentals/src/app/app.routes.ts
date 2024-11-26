@@ -3,6 +3,6 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
     { path: '', loadComponent: () => import('./home/home.component').then(m => m.HomeComponent) },
     { path: 'home', redirectTo: '', pathMatch: 'full' },
-    { path: 'posts', loadChildren: () => import('./feature/posts/posts.routes').then(m => m.routes) },
-    { path: 'products', loadChildren: () => import('./feature/products/products.routes').then(m => m.routes) },
+    { path: 'posts', loadChildren: () => import('./features/posts/posts.routes').then(m => m.routes) },
+    { path: 'products', loadChildren: () => import('./features/products/products.routes').then(m => m.routes) },
 ];

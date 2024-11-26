@@ -1,6 +1,6 @@
 
 
-  <div class="card" *ngIf="product">
+  <div class="card">
     <img [src]="product.thumbnail" [alt]="product.name" class="card-img-top" />
     <div class="card-body">
       <h5 class="card-title">{{ product.name }}</h5>
@@ -8,6 +8,6 @@
       <p class="card-text">
         <strong>{{ product.price | currency }}</strong>
       </p>
-      <button (click)="addToCart(product)" class="btn btn-primary">Add To Cart</button>
+      <ios-buyproduct-button [product]="product" (onBuyEvent)="buyProductCallback()" ></ios-buyproduct-button>
     </div>
   </div>
