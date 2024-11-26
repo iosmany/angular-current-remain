@@ -1,13 +1,14 @@
 
 
   <div class="card">
-    <img [src]="product.thumbnail" [alt]="product.name" class="card-img-top" />
+    <img [src]="product.thumbnail" [alt]="product.title" class="card-img-top" />
     <div class="card-body">
-      <h5 class="card-title">{{ product.name }}</h5>
+      <h5 class="card-title">{{ product.title }}</h5>
       <p class="card-text">{{ product.description }}</p>
       <p class="card-text">
         <strong>{{ product.price | currency }}</strong>
       </p>
       <ios-buyproduct-button [product]="product" (onBuyEvent)="buyProductCallback()" ></ios-buyproduct-button>
+      <a [routerLink]="['/products/product', product.id]" class="btn btn-primary">View</a>
     </div>
   </div>

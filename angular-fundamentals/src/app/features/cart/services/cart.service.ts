@@ -1,15 +1,18 @@
 import { Inject, Injectable } from "@angular/core";
 import { Product } from "../../products/models/product.model";
 import { LOCAL_STORAGE } from "../../../tokens/storage.token";
+import { Observable, of } from "rxjs";
 
-interface CartItem {
+export interface CartItem {
     product: Product;
     quantity: number;
 }
 
-interface Cart {
+export interface Cart {
     items: CartItem[];
     total: number;
+    addProduct: (product: Product, qty: number) => void;
+    remove: (item: CartItem) => void;
 }
 
 class CartImpl implements Cart {
@@ -31,6 +34,11 @@ class CartImpl implements Cart {
         }
         this.total += product.price * qty
     }
+
+    remove(item: CartItem) {
+        this.items = this.items.filter(i => i.product.id !== item.product.id);
+        this.total -= item.product.price * item.quantity;
+    };
 }
 
 @Injectable({
@@ -42,10 +50,10 @@ export class CartService {
 
     constructor(@Inject(LOCAL_STORAGE) private localStorage: Storage) {}
 
-    getCart(): CartImpl {
+    getCart(): Observable<Cart> {
         const cartJson = this.localStorage.getItem(this.key);
         const cart= cartJson ? new CartImpl(JSON.parse(cartJson)) : new CartImpl(); //ensure always return a cart object
-        return cart;
+        return of(cart);
     }
 
     setCart(cart: Cart) {
@@ -53,10 +61,22 @@ export class CartService {
     }
 
     addProductToCart(product: Product, qty: number = 1) {
-        const cart = this.getCart();
-        cart.addProduct(product, qty);
-        this.setCart(cart);
-        console.log('Product added to cart', product);
+        this.getCart().subscribe(cart => {
+            cart.addProduct(product, qty);
+            this.setCart(cart);
+            console.log('Product added to cart', product);
+        });
+    }
+
+    removeProduct(product: Product) {
+        this.getCart().subscribe(cart => {
+            const item = cart.items.find(i => i.product.id === product.id);
+            if (item) {
+                cart.remove(item);
+                this.setCart(cart);
+                console.log('Product removed from cart', product);
+            }
+        });
     }
 }
 

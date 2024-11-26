@@ -4,7 +4,7 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a routerLink="/products">Productos</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+        <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
       </ol>
     </nav>
   
@@ -12,12 +12,12 @@
     <div class="row">
       <!-- Product Image -->
       <div class="col-md-6">
-        <img [src]="product.thumbnail" [alt]="product.name" class="img-fluid rounded shadow-sm" />
+        <img [src]="product.thumbnail" [alt]="product.title" class="img-fluid rounded shadow-sm" />
       </div>
   
       <!-- Product Info -->
       <div class="col-md-6">
-        <h1 class="display-5">{{ product.name }}</h1>
+        <h1 class="display-5">{{ product.title }}</h1>
         <p class="lead">{{ product.description }}</p>
         <h3 class="text-primary">{{ product.price | currency }}</h3>
   

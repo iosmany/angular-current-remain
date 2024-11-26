@@ -22,6 +22,7 @@ export class HeaderComponent {
         { title: "Home", route: "/" },
         { title: "Posts", route: "/posts" },
         { title: "Products", route: "/products" },
+        { title: "Shopping Cart", route: "/cart" },
         { title: "Contact", route: "/contact" },
     ]
 }
