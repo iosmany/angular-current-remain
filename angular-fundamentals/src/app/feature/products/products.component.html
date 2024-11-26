@@ -1,0 +1,12 @@
+
+
+<div class="container my-4">
+    <h1 class="text-center">Products</h1>
+    
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let product of products">
+        <ios-product-card  [product]="product"></ios-product-card>
+      </div>
+    </div>
+  </div>
+  
