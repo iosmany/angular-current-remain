@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BuyProductButtonComponent } from '../components/buyproductbutton.component';
 import { Product } from '../models/product.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'ios-product-detail',
@@ -13,19 +14,16 @@ import { CommonModule } from '@angular/common';
 export class ProductDetailComponent implements OnInit{
 
   product?: Product = undefined;
-  constructor(private route: ActivatedRoute) {}
+
+  constructor(private route: ActivatedRoute,private productService: ProductService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const productId = params['id'];
       if (productId) {
-        fetch('https://dummyjson.com/products/' + productId).then(response => {
-          return response.json();
-        }).then((result) => {
-          this.product = result;
-        }).catch((err) => {
-          console.error(err);
-        });
+          this.productService
+            .getProduct(productId)
+            .subscribe(product => this.product = product);
       }
     });
   }

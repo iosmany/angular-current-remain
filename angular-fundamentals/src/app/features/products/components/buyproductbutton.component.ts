@@ -5,7 +5,7 @@ import { CartService } from "../../cart/services/cart.service";
 @Component({
     selector: 'ios-buyproduct-button',
     template: `
-    <button (click)="buyButtonClicked()" class="btn btn-success btn-lg me-3">
+    <button (click)="buyButtonClicked()" class="btn btn-success btn-sm me-3">
             <i class="bi bi-cart-plus"></i> Add To Cart
           </button>
     `

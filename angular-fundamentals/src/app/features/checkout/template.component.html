@@ -1,0 +1,51 @@
+<div class="container mt-5">
+    <h2>Checkout</h2>
+    <form #checkoutForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" #name="ngModel" class="form-control" [(ngModel)]="checkoutModel.name">
+        <div *ngIf="name?.invalid && name?.touched" class="text-danger">
+          Name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" #email="ngModel" class="form-control" [(ngModel)]="checkoutModel.email">
+        <div *ngIf="email?.invalid && email?.touched" class="text-danger">
+          Email is required.
+        </div>
+        <div *ngIf="email.errors?.['email'] && email.touched" class="text-danger">
+          Must be a valid email format
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" id="address" name="address" #address="ngModel" class="form-control" [(ngModel)]="checkoutModel.address">
+        <div *ngIf="address?.invalid && address?.touched" class="text-danger">
+          Address is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cardNumber">Card Number</label>
+        <input type="text" id="cardNumber" name="cardNumber" #cardNumber="ngModel" class="form-control" [(ngModel)]="checkoutModel.cardNumber">
+        <div *ngIf="cardNumber?.invalid && cardNumber?.touched" class="text-danger">
+          Card number is required and must be 16 digits.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="expirationDate">Expiration Date (MM/YY)</label>
+        <input type="text" id="expirationDate" name="expirationDate" #expirationDate="ngModel" class="form-control" [(ngModel)]="checkoutModel.expirationDate">
+        <div *ngIf="expirationDate?.invalid && expirationDate?.touched" class="text-danger">
+          Expiration date is required and must be in MM/YY format.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" name="cvv" #cvv="ngModel" class="form-control" [(ngModel)]="checkoutModel.cvv">
+        <div *ngIf="cvv?.invalid && cvv?.touched" class="text-danger">
+          CVV is required and must be 3 digits.
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="checkoutForm.form.invalid">Submit</button>
+    </form>
+  </div>

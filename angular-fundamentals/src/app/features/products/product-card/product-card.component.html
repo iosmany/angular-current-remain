@@ -9,6 +9,6 @@
         <strong>{{ product.price | currency }}</strong>
       </p>
       <ios-buyproduct-button [product]="product" (onBuyEvent)="buyProductCallback()" ></ios-buyproduct-button>
-      <a [routerLink]="['/products/product', product.id]" class="btn btn-primary">View</a>
+      <a [routerLink]="['/products/product', product.id]" [queryParams]="{ q: 'dummy' }" class="btn btn-primary btn-sm">View</a>
     </div>
   </div>
