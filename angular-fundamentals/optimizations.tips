@@ -1,0 +1,51 @@
+Use OnPush Change Detection Strategy
+Use the OnPush strategy in your components to reduce the frequency of checks. This ensures Angular checks only when inputs change.
+
+@Component({
+  selector: 'app-my-component',
+  changeDetection: ChangeDetectionStrategy.OnPush,    # to stop tracking changes on statics components
+  template: `<h1>{{ title }}</h1>`,
+})
+export class MyComponent {
+  @Input() title!: string;
+}
+
+Enable Ahead-of-Time (AOT) Compilation:
+Use AOT instead of Just-in-Time (JIT) compilation for faster runtime performance.
+
+>: ng build --aot
+
+Ensure unused code is removed and the output is minified using production builds:
+>: ng build --prod
+
+
+Use dynamic imports to load components or modules only when needed:
+
+code: const LazyComponent = () => import('./lazy/lazy.component').then(m => m.LazyComponent);
+
+
+Caching and Preloading
+Service Workers: Enable Angular PWA to cache static assets and serve them offline.
+
+>: ng add @angular/pwa
+
+Preload Modules: Use Angular’s PreloadAllModules strategy in routing.
+
+code: RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules });
+
+Serve static assets like CSS, JS, and fonts via a CDN.
+
+Angular DevTools: Use the official Angular DevTools to profile components and detect issues.
+Lighthouse: Run audits to identify performance bottlenecks.
+
+Remove unused libraries and modules. Use tools like webpack-bundle-analyzer to identify large dependencies.
+
+Set budgets in angular.json to monitor and reduce bundle sizes:
+
+"budgets": [
+  {
+    "type": "initial",
+    "maximumWarning": "2mb",
+    "maximumError": "5mb"
+  }
+]

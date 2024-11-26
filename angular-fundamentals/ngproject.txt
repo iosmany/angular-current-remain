@@ -1,0 +1,4 @@
+
+npm install -g @angular/cli
+
+ng new <project_name> --directory .   #--directory . tell cli to create the project inside the same folder, not creating a new one
