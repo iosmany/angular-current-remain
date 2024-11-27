@@ -1,0 +1,23 @@
+
+
+<div class="checkout-summary container">
+  <h2 class="my-4">Checkout Summary</h2>
+  <div class="summary-item row mb-3" *ngFor="let item of checkoutModel.orderItems">
+    <div class="item-details col-md-8">
+      <span class="item-title d-block font-weight-bold">{{ item.title }}</span>
+      <span class="item-quantity text-muted">Quantity: {{ item.quantity }}</span>
+    </div>
+    <div class="item-price col-md-4 text-right">
+      <span>{{ item.price | currency }}</span>
+    </div>
+  </div>
+  <div class="summary-total row mt-4">
+    <div class="col-md-8 text-right">
+      <span class="font-weight-bold">Total:</span>
+    </div>
+    <div class="col-md-4 text-right">
+      <span>{{ total | currency }}</span>
+    </div>
+  </div>
+  <button class="btn btn-primary btn-block mt-4" (click)="onCheckout()">Proceed to Checkout</button>
+</div>
